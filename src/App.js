@@ -4,16 +4,25 @@ import './App.css';
 import Form from './Form';
 
 class App extends Component {
+	constructor() {
+		super();
+		this.state ={
+			output: ''
+		}
+	}
+
+	handleChange = (e) => {
+	this.setState({
+		[e.target.name]: e.target.value.split("").reverse()
+	}), () => console.log(this.state)
+	}
 	render() {
 		return (
 			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to Device Insight</h1>
-				</header>
-				<div className="App-intro">
-					<Form />
-				</div>
+				<h1>INPUT</h1>
+				<input  onChange={this.handleChange} placeholder="Write something here" name="output"/>
+				<h2>OUTPUT</h2>
+				<h1>{this.state.output}</h1>
 			</div>
 		);
 	}
